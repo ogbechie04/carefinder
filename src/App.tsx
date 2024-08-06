@@ -7,6 +7,7 @@ import { SimpleGrid } from "@chakra-ui/react";
 import NavBar from "./components/navbar";
 import SearchBar from "./components/searchBar";
 import Footer from "./components/footer"
+import BlogCard from "./components/blogCard";
 import PatientReviewCard from "./components/patientReviewCard"
 import { buildCsv } from "./backend/csv-builder";
 import GenerateRandomImage from "./utils/generateHospitalImage";
@@ -15,8 +16,9 @@ function App() {
   return (
     <>
       <NavBar />
-      <SearchBar />
-      <PatientReviewCard />
+      <BlogCard />
+      {/* <SearchBar /> */}
+      {/* <PatientReviewCard /> */}
       <Footer />
     </>
   );

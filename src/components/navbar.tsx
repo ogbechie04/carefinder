@@ -1,5 +1,4 @@
-import React, { useState } from "react";
-import { ReactRouterLink } from "react-router-dom";
+import { useState } from "react";
 import zoro from "../assets/profile-image.svg";
 import {
   Link,
@@ -13,7 +12,7 @@ import {
   IconButton,
 } from "@chakra-ui/react";
 import HamburgerMenu from "./hamburgerMenu";
-import { FiChevronDown, FiMenu } from "react-icons/fi";
+import { FiChevronDown } from "react-icons/fi";
 
 function NavBar() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);

@@ -1,8 +1,4 @@
-import React from "react";
 import {
-  Text,
-  Stack,
-  Box,
   Icon,
   Button,
   InputGroup,
@@ -12,7 +8,6 @@ import {
   useBreakpointValue,
 } from "@chakra-ui/react";
 import { FiSearch } from "react-icons/fi";
-import { Search2Icon } from "@chakra-ui/icons";
 
 function SearchBar() {
   const placeholder = useBreakpointValue({
