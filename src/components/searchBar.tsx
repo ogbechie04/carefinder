@@ -13,7 +13,6 @@ function SearchBar() {
   const placeholder = useBreakpointValue({
     base: "Search",
     md: "Search for a Hospital",
-    lg: "Search for a Hospital on a large screen",
   });
   return (
     <>

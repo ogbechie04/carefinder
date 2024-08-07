@@ -6,8 +6,8 @@ import GenerateRandomImage from "../utils/generateHospitalImage";
 const client = new S3Client({
   region: "eu-west-2",
   credentials: {
-    accessKeyId: "AKIA6GBMBYKLBQBXJQDX",
-    secretAccessKey: "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",
+    accessKeyId: import.meta.env.VITE_ACCESS_ID,
+    secretAccessKey: import.meta.env.VITE_SECRET_KEY,
   },
 });
 

@@ -20,7 +20,7 @@ function HospitalCard(props: { hospital: Hospital }) {
   return (
     <>
       <Card maxW={"402px"} fontFamily={'Open Sans'}>
-        <CardBody>
+        <CardBody padding={4}>
           <Image
             src={props.hospital.imageURL}
             alt="Green double couch with wooden legs"

@@ -17,7 +17,7 @@ import {
 } from "@chakra-ui/react";
 
 function BlogCard(props) {
-  const { blogImage, imageAlt, blogHeading, blogText } = props;
+  const { blogImage, imageAlt, blogHeading = 'Dont call me angel', blogText = 'blah blah blah blah blah' } = props;
 
   const { isOpen, onOpen, onClose } = useDisclosure();
   return (

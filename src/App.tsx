@@ -12,12 +12,16 @@ import PatientReviewCard from "./components/patientReviewCard";
 import { buildCsv } from "./backend/csv-builder";
 import GenerateRandomImage from "./utils/generateHospitalImage";
 import FaqAccordion from "./components/faqAccordion.tsx";
+import CourseCard from "./components/courseCard.tsx";
 import FaqPills from "./components/faqPills.tsx";
+import LandingPage from "./pages/landingPage.tsx";
 
 function App() {
   return (
     <>
-      <FaqPills />
+    <LandingPage />
+      {/* <CourseCard /> */}
+      {/* <FaqPills /> */}
       {/* <FaqAccordion /> */}
       {/* <NavBar /> */}
       {/* <BlogCard /> */}
