@@ -6,20 +6,22 @@ import { CSVLink } from "react-csv";
 import { SimpleGrid } from "@chakra-ui/react";
 import NavBar from "./components/navbar";
 import SearchBar from "./components/searchBar";
-import Footer from "./components/footer"
+import Footer from "./components/footer.tsx"
 import BlogCard from "./components/blogCard";
 import PatientReviewCard from "./components/patientReviewCard"
 import { buildCsv } from "./backend/csv-builder";
 import GenerateRandomImage from "./utils/generateHospitalImage";
+import FaqAccordion from "./components/faqAccordion.tsx";
 
 function App() {
   return (
     <>
-      <NavBar />
-      <BlogCard />
+  <FaqAccordion />
+      {/* <NavBar /> */}
+      {/* <BlogCard /> */}
       {/* <SearchBar /> */}
       {/* <PatientReviewCard /> */}
-      <Footer />
+      {/* <Footer /> */}
     </>
   );
   // const [hospitals, setHospitals] = useState<Hospital[]>([]);
