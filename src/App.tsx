@@ -8,17 +8,19 @@ import NavBar from "./components/navbar";
 import SearchBar from "./components/searchBar";
 import Footer from "./components/footer.tsx";
 import BlogCard from "./components/blogCard";
-import PatientReviewCard from "./components/patientReviewCard";
+import PatientReviewCard from "./components/patientReviewCard.tsx";
 import { buildCsv } from "./backend/csv-builder";
 import GenerateRandomImage from "./utils/generateHospitalImage";
 import FaqAccordion from "./components/faqAccordion.tsx";
 import CourseCard from "./components/courseCard.tsx";
 import FaqPills from "./components/faqPills.tsx";
 import LandingPage from "./pages/landingPage.tsx";
+import Carousel from "./components/carousel.tsx";
 
 function App() {
   return (
     <>
+    {/* <Carousel /> */}
     <LandingPage />
       {/* <CourseCard /> */}
       {/* <FaqPills /> */}
