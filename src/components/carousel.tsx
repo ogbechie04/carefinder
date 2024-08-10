@@ -42,8 +42,8 @@ function Carousel() {
   }
   return (
     <>
-      <Box>
-        <Stack direction={"row"} spacing={6} alignItems={"center"}>
+      <Box maxW={'38.875rem'} overflow={'hidden'}>
+        <Stack direction={"row"} spacing={6} alignItems={"center"} justifyContent={'flex-end'}>
           <Text
             fontFamily={"Open Sans"}
             fontSize={"small"}
@@ -90,9 +90,10 @@ function Carousel() {
         <Flex
           transition="transform 0.7s ease"
           transform={`translateX(-${currentIndex * 100}%)`}
+              marginBlockStart={6}
         >
           {carouselCards.map((card, index) => (
-            <Box key={index + 1} minWidth="100%">
+            <Box key={index} minWidth="100%">
               {card}
             </Box>
           ))}

@@ -21,6 +21,7 @@ function FaqPills({ pillText }) {
         bgColor={"white"}
         fontSize={"medium"}
         fontWeight={"normal"}
+        // width={'fit-content'}
       >
         {pillText}
       </Button>

@@ -17,7 +17,7 @@ import {
 } from "@chakra-ui/react";
 
 function BlogCard(props) {
-  const { blogImage, imageAlt, blogHeading = 'Dont call me angel', blogText = 'blah blah blah blah blah' } = props;
+  const { blogImage, imageAlt, blogHeading, blogText } = props;
 
   const { isOpen, onOpen, onClose } = useDisclosure();
   return (
@@ -77,7 +77,7 @@ function BlogCard(props) {
               paddingBlock={3}
               variant={"solid"}
               borderRadius={"1.75rem"}
-              _hover={{ textDecoration: "none" }}
+              _hover={{ textDecoration: "none", bgColor: "#030EDD" }}
             >
               Close
             </Button>
