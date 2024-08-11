@@ -12,6 +12,7 @@ import {
   SimpleGrid,
   Button,
   Stack,
+  useBreakpointValue
 } from "@chakra-ui/react";
 import heroBlueBackground from "../assets/hero-section-bg.svg";
 import blogBrain from "../assets/blog-brain.svg";
@@ -29,6 +30,7 @@ import Footer from "../components/footer";
 function LandingPage() {
   const [hospitals, setHospitals] = useState<Hospital[]>([]);
   const [csvData, setCsvData] = useState<string[][]>([]);
+  const numCards = useBreakpointValue({ base: 3, md: 4, lg: 3 });
 
   async function setUp() {
     const response = await hospitalList();
@@ -55,7 +57,7 @@ function LandingPage() {
           {/* HERO SECTION */}
           <Box
             width={"100%"}
-            height={{ base: "fit-content", md: "45rem" }}
+            height={{ base: "fit-content", lg: "45rem" }}
             position={"relative"}
             bgColor={"#FAFAFA"}
           >
@@ -69,7 +71,7 @@ function LandingPage() {
               bgSize={"cover"}
               bgImage={heroBlueBackground}
               height={"100%"}
-              bgColor={{ base: "#3640FC", md: "inherit" }}
+              bgColor={{ base: "#3640FC", lg: "inherit" }}
             ></Box>
             <Box
               position={"absolute"}
@@ -85,26 +87,26 @@ function LandingPage() {
               display={{ base: "none", lg: "block" }}
             ></Box>
             <Box
-              position={{ base: "relative", md: "absolute" }}
-              display={{ base: "flex", md: "block" }}
+              position={{ base: "relative", lg: "absolute" }}
+              display={{ base: "flex", lg: "block" }}
               flexDirection={{ base: "column" }}
-              top={{ md: "10%", lg: "23.61%" }}
-              left={{ md: "10%", lg: "5.23%" }}
+              top={{ lg: "23.61%" }}
+              left={{ lg: "5.23%" }}
               zIndex={2}
-              maxW={{ base: "100%", md: "80%", lg: "45%" }}
-              height={{ base: "100%", md: "auto" }}
-              textAlign={{ base: "center", lg: "left" }}
-              alignItems={"center"}
-              paddingBlockStart={{ base: 10, md: "unset" }}
-              paddingInline={{ base: 5, md: "unset" }}
+              maxW={{ base: "100%", lg: "45%" }}
+              height={{ base: "100%", lg: "auto" }}
+              textAlign={{ base: "center", md: "left" }}
+              alignItems={{ base: "center", md: "flex-start" }}
+              paddingBlockStart={{ base: 10, lg: "unset" }}
+              paddingInline={{ base: 5, lg: "unset" }}
             >
               <Heading
                 fontFamily={"Prompt"}
-                fontSize={{ base: "4xl", md: "5xl" }}
+                fontSize={{ base: "4xl", lg: "5xl" }}
                 fontWeight={"medium"}
                 lineHeight={{ md: "4.5rem" }}
                 // wordBreak={"break-word"}
-                color={{ base: "white", md: "#1A1A1A" }}
+                color={{ base: "white", lg: "#1A1A1A" }}
               >
                 Find the Best Hospital for Your Needs
               </Heading>
@@ -113,22 +115,22 @@ function LandingPage() {
                 fontSize={{ base: "medium", md: "xl" }}
                 lineHeight={8}
                 wordBreak={"break-word"}
-                color={{ base: "white", md: "#1A1A1A" }}
+                color={{ base: "white", lg: "#1A1A1A" }}
                 letterSpacing={"0.4px"}
               >
                 Easily Search, Compare, and Choose Top-Rated Hospitals Near You
               </Text>
             </Box>
             <Box
-              position={{ base: "relative", md: "absolute" }}
-              top={{ md: "59.86%" }}
-              left={{ md: "50%" }}
+              position={{ base: "relative", lg: "absolute" }}
+              top={{ lg: "59.86%" }}
+              left={{ lg: "50%" }}
               zIndex={3}
-              transform={{ md: "translate(-50%, -50%)" }}
-              w={{ base: "100%", md: "50%" }}
-              paddingInline={{ base: 5, md: "unset" }}
-              paddingBlockEnd={{ base: 10, md: "unset" }}
-              paddingBlockStart={{ base: 5, md: "unset" }}
+              transform={{ lg: "translate(-50%, -50%)" }}
+              w={{ base: "100%", lg: "50%" }}
+              paddingInline={{ base: 5, lg: "unset" }}
+              paddingBlockEnd={{ base: 10, md: 16, lg: "unset" }}
+              paddingBlockStart={{ base: 5, md: 12, lg: "unset" }}
             >
               <SearchBar />
             </Box>
@@ -138,12 +140,12 @@ function LandingPage() {
         {/* MAIN SECTION */}
         <Container
           margin={"unset"}
-          marginBlockStart={28}
-          paddingInline={"4.9375rem"}
+          marginBlockStart={{base: 16, md: 20, lg: 28}}
+          paddingInline={{ base: "2rem", md: "3rem", lg: "4.9375rem" }}
           maxW={"100%"}
         >
           {/* FEATURED HOSPITALS */}
-          <Flex direction={"column"} gap={20} alignItems={"center"}>
+          <Flex direction={"column"} gap={{base: 16, md: 20}} alignItems={"center"}>
             <Box
               display={"flex"}
               flexDirection={"column"}
@@ -151,6 +153,7 @@ function LandingPage() {
               fontFamily={"Open Sans"}
               fontWeight={"semibold"}
               gap={4}
+              textAlign={'center'}
             >
               <Heading
                 fontFamily={"Poppins"}
@@ -172,7 +175,7 @@ function LandingPage() {
               </Text>
             </Box>
             <SimpleGrid columns={{ sm: 1, md: 2, lg: 3 }} gap={"2.375rem"}>
-              {hospitals.slice(0, 3).map((hospital, index) => (
+              {hospitals.slice(0, numCards).map((hospital, index) => (
                 <CourseCard key={index} hospital={hospital} />
               ))}
             </SimpleGrid>
@@ -199,6 +202,7 @@ function LandingPage() {
             alignItems={"center"}
             justifyContent={"space-between"}
             gap={"2.375rem"}
+            direction={{ base: 'column', md: 'row'}}
           >
             <Box
               display={"flex"}
@@ -207,7 +211,7 @@ function LandingPage() {
               fontFamily={"Open Sans"}
               fontWeight={"semibold"}
               gap={4}
-              textAlign={"left"}
+              textAlign={{base: 'center', md: "left"}}
             >
               <Heading
                 fontFamily={"Poppins"}
@@ -453,7 +457,7 @@ function LandingPage() {
           padding={"unset"}
           maxW={"100%"}
         >
-            <Footer />
+          <Footer />
         </Container>
       </Container>
     </>

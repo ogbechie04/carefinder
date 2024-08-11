@@ -18,12 +18,13 @@ function PatientReviewCard(props) {
       <Card
         fontFamily={"Open Sans"}
         w={"fit-content"}
+        h={{base: 'fit-content'}}
         borderRadius={"lg"}
         paddingBlockStart={4}
         paddingBlockEnd={"4.0625rem"}
         paddingInlineEnd={"0.625rem"}
         paddingInlineStart={6}
-        maxW={"38.875rem"}
+        maxW={{base: '18rem', md: "38.875rem"}}
         bgImage={quotes}
         bgRepeat={"no-repeat"}
         bgPosition={"bottom right"}
