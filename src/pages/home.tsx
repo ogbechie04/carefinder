@@ -1,7 +1,3 @@
-import React, { useState, useEffect } from "react";
-import hospitalList from "../backend/hospital-repo";
-import Hospital from "../backend/hospital";
-import { CSVLink } from "react-csv";
 import NavBar from "../components/navbar";
 import {
   Box,
@@ -26,22 +22,12 @@ import FaqPills from "../components/faqPills";
 import FaqAccordion from "../components/faqAccordion";
 import BlogCard from "../components/blogCard";
 import Footer from "../components/footer";
+import useHospitalData from "../hooks/useHospitalData";
+import { Link } from "react-router-dom";
 
-function LandingPage() {
-  const [hospitals, setHospitals] = useState<Hospital[]>([]);
-  const [csvData, setCsvData] = useState<string[][]>([]);
+function Home() {
+  const { hospitals } = useHospitalData()
   const numCards = useBreakpointValue({ base: 3, md: 4, lg: 3 });
-
-  async function setUp() {
-    const response = await hospitalList();
-    setHospitals(response);
-    console.log(response[0]);
-    setCsvData(buildCsv(response));
-  }
-
-  useEffect(() => {
-    setUp();
-  }, []);
 
   return (
     <>
@@ -180,6 +166,7 @@ function LandingPage() {
               ))}
             </SimpleGrid>
             <Box>
+              <Link to={'/HospitalPage'}>
               <Button
                 fontFamily={"Open Sans"}
                 color={"white"}
@@ -193,6 +180,7 @@ function LandingPage() {
               >
                 View More Hospitals
               </Button>
+              </Link>
             </Box>
           </Flex>
 
@@ -464,4 +452,4 @@ function LandingPage() {
   );
 }
 
-export default LandingPage;
+export default Home;

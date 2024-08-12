@@ -11,6 +11,7 @@ import {
   Box,
   IconButton,
 } from "@chakra-ui/react";
+import { Link as ReactRouterLink } from "react-router-dom";
 import HamburgerMenu from "./hamburgerMenu";
 import { FiChevronDown } from "react-icons/fi";
 
@@ -30,12 +31,15 @@ function NavBar() {
         style={{ whiteSpace: "nowrap" }}
         alignItems={"center"}
         justifyContent={'space-between'}
+        backgroundColor={'white'}
       >
         <Link
           fontFamily={"Montserrat"}
           fontSize={{lg: "4xl", base: "x-large"}}
           fontWeight={"bold"}
           _hover={{ textDecoration: "none" }}
+          as={ReactRouterLink} to={'/'}
+
         >
           Carefinder
         </Link>
@@ -48,7 +52,7 @@ function NavBar() {
           alignItems={"center"}
           display={{ lg: "flex", base: "none" }}
         >
-          <Link px={8} py={3} _hover={{ textDecoration: "none" }}>
+          <Link as={ReactRouterLink} to={'/HospitalPage'} px={8} py={3} _hover={{ textDecoration: "none" }}>
             Explore
           </Link>
           <Link px={8} py={3} _hover={{ textDecoration: "none" }}>

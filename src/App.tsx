@@ -14,24 +14,35 @@ import GenerateRandomImage from "./utils/generateHospitalImage";
 import FaqAccordion from "./components/faqAccordion.tsx";
 import CourseCard from "./components/courseCard.tsx";
 import FaqPills from "./components/faqPills.tsx";
-import LandingPage from "./pages/home.tsx";
+import Home from "./pages/home.tsx";
 import Carousel from "./components/carousel.tsx";
+import HospitalPage from "./pages/hospitalPage.tsx";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 function App() {
-  return (
-    <>
-    {/* <Carousel /> */}
-    <LandingPage />
-      {/* <CourseCard /> */}
-      {/* <FaqPills /> */}
-      {/* <FaqAccordion /> */}
-      {/* <NavBar /> */}
-      {/* <BlogCard /> */}
-      {/* <SearchBar /> */}
-      {/* <PatientReviewCard /> */}
-      {/* <Footer /> */}
-    </>
-  );
+  return(
+    <Router>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/HospitalPage" element={<HospitalPage />} />
+      </Routes>
+    </Router>
+  )
+  // return (
+  //   <>
+  //   {/* <Carousel /> */}
+  //   {/* <LandingPage /> */}
+  //   {/* <HospitalPage /> */}
+  //     {/* <CourseCard /> */}
+  //     {/* <FaqPills /> */}
+  //     {/* <FaqAccordion /> */}
+  //     {/* <NavBar /> */}
+  //     {/* <BlogCard /> */}
+  //     {/* <SearchBar /> */}
+  //     {/* <PatientReviewCard /> */}
+  //     {/* <Footer /> */}
+  //   // </>
+  // );
   // const [hospitals, setHospitals] = useState<Hospital[]>([]);
   // const [csvData, setCsvData] = useState<string[][]>([])
 

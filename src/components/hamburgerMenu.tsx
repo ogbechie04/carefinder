@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link as ReactRouterLink } from "react-router-dom";
 import {
   useDisclosure,
   IconButton,
@@ -49,7 +50,7 @@ function HamburgerMenu() {
               flexDirection={'column'}
               justifyContent={'center'}
             >
-              <Link px={8} py={3} _hover={{ textDecoration: "none" }}>
+              <Link as={ReactRouterLink} to={'/HospitalPage'} px={8} py={3} _hover={{ textDecoration: "none" }}>
                 Explore
               </Link>
               <Link px={8} py={3} _hover={{ textDecoration: "none" }}>
