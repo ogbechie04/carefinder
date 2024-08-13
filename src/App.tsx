@@ -18,8 +18,10 @@ import Home from "./pages/home.tsx";
 import Carousel from "./components/carousel.tsx";
 import HospitalPage from "./pages/hospitalPage.tsx";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import ExportModal from "./components/exportModal.tsx";
 
 function App() {
+  console.log(window.location.href)
   return(
     <Router>
       <Routes>
@@ -30,6 +32,7 @@ function App() {
   )
   // return (
   //   <>
+  //   {/* <ExportModal /> */}
   //   {/* <Carousel /> */}
   //   {/* <LandingPage /> */}
   //   {/* <HospitalPage /> */}
@@ -41,7 +44,7 @@ function App() {
   //     {/* <SearchBar /> */}
   //     {/* <PatientReviewCard /> */}
   //     {/* <Footer /> */}
-  //   // </>
+  //    </>
   // );
   // const [hospitals, setHospitals] = useState<Hospital[]>([]);
   // const [csvData, setCsvData] = useState<string[][]>([])

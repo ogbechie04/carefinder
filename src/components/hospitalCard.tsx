@@ -18,7 +18,7 @@ function HospitalCard(props: { hospital: Hospital }) {
 
   return (
     <>
-      <Card maxW={"402px"} fontFamily={'Open Sans'}>
+      <Card maxW={"402px"} fontFamily={'Open Sans'} h={'35.125rem'}>
         <CardBody padding={4}>
           <Image
             src={props.hospital.imageURL}
@@ -26,7 +26,7 @@ function HospitalCard(props: { hospital: Hospital }) {
             borderRadius="lg"
           />
           <Stack mt="6" spacing="1">
-            <Flex alignItems={"center"} justifyContent={"space-between"}>
+            <Flex alignItems={"center"} justifyContent={"space-between"} gap={4}>
               <Heading size="md" fontFamily={'Open Sans'}>{CapitalizeLetter(props.hospital.name)}</Heading>
               <Button variant={"unstyled"} minW={"unset"} h={"unset"}>
                 <Image src={arrow}></Image>

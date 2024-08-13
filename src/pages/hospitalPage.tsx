@@ -15,18 +15,30 @@ import {
 } from "@chakra-ui/react";
 import NavBar from "../components/navbar";
 import SearchBar from "../components/searchBar";
-import CapitalizeLetter from "../utils/capitalizeFirstLetter";
 import HospitalCard from "../components/hospitalCard";
-import { FiChevronDown, FiChevronRight, FiDownload } from "react-icons/fi";
+import { FiChevronRight, FiDownload } from "react-icons/fi";
 import { PiShareFatBold } from "react-icons/pi";
 import FilterHospital from "../components/filterHospitals";
+import ReactPaginate from "react-paginate";
+import "../index.css";
+import { SetStateAction } from "react";
+import Footer from "../components/footer";
+import ExportModal from "../components/exportModal";
 
 function HospitalPage() {
-  const { hospitals, csvData, uniqueState, uniqueType, currentPage, setCurrentPage, pageCount } = useHospitalData();
+  const {
+    hospitals,
+    csvData,
+    uniqueState,
+    uniqueType,
+    currentPage,
+    setCurrentPage,
+    pageCount,
+  } = useHospitalData();
 
-  const handlePageClick = (data) => {
-    setCurrentPage(data.selected)
-  }
+  const handlePageClick = (data: { selected: SetStateAction<number> }) => {
+    setCurrentPage(data.selected);
+  };
   return (
     <>
       <Container
@@ -50,7 +62,8 @@ function HospitalPage() {
             justifyContent={"space-between"}
           >
             <SearchBar />
-            <Button
+            <ExportModal exportData={csvData} />
+            {/* <Button
               fontFamily={"Open Sans"}
               color={"#191A23"}
               bgColor={"white"}
@@ -64,7 +77,7 @@ function HospitalPage() {
               gap={0.5}
             >
               Export
-            </Button>
+            </Button> */}
             <Button
               rightIcon={<PiShareFatBold />}
               fontFamily={"Open Sans"}
@@ -78,9 +91,7 @@ function HospitalPage() {
               fontWeight={"semibold"}
               gap={0.5}
             >
-              <CSVLink data={csvData} target="_blank" filename="hospital.csv">
                 Share
-              </CSVLink>
             </Button>
           </Flex>
           {/* BreadCrumbs */}
@@ -109,9 +120,9 @@ function HospitalPage() {
           </Box>
 
           {/* FILTER SECTION */}
-          <Box display={'flex'} gap={8} alignItems={'center'}>
-            <Text>Filter:</Text>
-            <Stack direction={'row'} spacing={10}>
+          <Box display={"flex"} gap={8} alignItems={"center"} marginBlockStart={8}>
+            <Text fontFamily={'Open sans'} fontWeight={'semibold'}>Filter:</Text>
+            <Stack direction={"row"} spacing={10}>
               <FilterHospital
                 filterCategory={uniqueState}
                 categoryName="Location"
@@ -119,20 +130,43 @@ function HospitalPage() {
               <FilterHospital filterCategory={uniqueType} categoryName="Type" />
             </Stack>
           </Box>
+          {/* HOSPITAL RENDERING */}
+          <Box display="flex" flexDirection={"column"} gap={6}>
+            <SimpleGrid
+              columns={{ sm: 1, md: 2, lg: 3 }}
+              marginBlockStart={4}
+              justifyItems={"space-between"}
+              columnGap={'2.375rem'}
+              rowGap={6}
+              alignItems={"center"}
+              marginBlockEnd={4}
+            >
+              {hospitals.map((hospital, index) => {
+                return <HospitalCard key={index} hospital={hospital} />;
+              })}
+            </SimpleGrid>
+
+            <ReactPaginate
+              previousLabel={"Previous"}
+              nextLabel={"Next"}
+              pageCount={pageCount}
+              marginPagesDisplayed={1}
+              pageRangeDisplayed={5}
+              onPageChange={handlePageClick}
+              containerClassName="pagination"
+              activeClassName="active"
+              pageClassName="page-item"
+              previousClassName="page-item"
+              nextClassName="page-item"
+              breakLabel={"..."}
+            />
+          </Box>
         </Container>
 
-        {/* HOSPITAL RENDERING */}
-        <SimpleGrid
-        columns={{ sm: 1, md: 2, lg: 3 }}
-        marginBlockStart={4}
-        justifyItems={'center'}
-        rowGap={6}
-        alignItems={"center"}
-      >
-        {hospitals.map((hospital, index) => {
-          return <HospitalCard key={index} hospital={hospital} />;
-        })}
-      </SimpleGrid>
+        {/* Footer */}
+        <Box marginBlockStart={10}>
+            <Footer />
+        </Box>
       </Container>
     </>
   );
