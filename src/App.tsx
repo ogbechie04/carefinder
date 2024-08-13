@@ -19,6 +19,7 @@ import Carousel from "./components/carousel.tsx";
 import HospitalPage from "./pages/hospitalPage.tsx";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import ExportModal from "./components/exportModal.tsx";
+import ShareButton from "./components/shareButton.tsx";
 
 function App() {
   console.log(window.location.href)
@@ -29,6 +30,7 @@ function App() {
         <Route path="/HospitalPage" element={<HospitalPage />} />
       </Routes>
     </Router>
+    // <ShareButton />
   )
   // return (
   //   <>

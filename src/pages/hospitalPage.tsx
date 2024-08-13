@@ -24,6 +24,7 @@ import "../index.css";
 import { SetStateAction } from "react";
 import Footer from "../components/footer";
 import ExportModal from "../components/exportModal";
+import ShareButton from "../components/shareButton";
 
 function HospitalPage() {
   const {
@@ -63,36 +64,7 @@ function HospitalPage() {
           >
             <SearchBar />
             <ExportModal exportData={csvData} />
-            {/* <Button
-              fontFamily={"Open Sans"}
-              color={"#191A23"}
-              bgColor={"white"}
-              paddingInline={8}
-              paddingBlock={3}
-              variant={"outline"}
-              borderRadius={"2.8125rem"}
-              _hover={{ textDecoration: "none" }}
-              fontWeight={"semibold"}
-              rightIcon={<FiDownload fontWeight={"semibold"} />}
-              gap={0.5}
-            >
-              Export
-            </Button> */}
-            <Button
-              rightIcon={<PiShareFatBold />}
-              fontFamily={"Open Sans"}
-              color={"#191A23"}
-              bgColor={"white"}
-              paddingInline={8}
-              paddingBlock={3}
-              variant={"outline"}
-              borderRadius={"2.8125rem"}
-              _hover={{ textDecoration: "none" }}
-              fontWeight={"semibold"}
-              gap={0.5}
-            >
-                Share
-            </Button>
+            <ShareButton />
           </Flex>
           {/* BreadCrumbs */}
           <Box marginBlockStart={8}>
