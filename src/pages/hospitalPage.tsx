@@ -1,23 +1,21 @@
 import useHospitalData from "../hooks/useHospitalData";
-import { CSVLink } from "react-csv";
 import { Link } from "react-router-dom";
 import {
   Box,
   Breadcrumb,
   BreadcrumbItem,
   BreadcrumbLink,
-  Button,
   Container,
   SimpleGrid,
   Flex,
   Stack,
   Text,
+  Button
 } from "@chakra-ui/react";
 import NavBar from "../components/navbar";
 import SearchBar from "../components/searchBar";
 import HospitalCard from "../components/hospitalCard";
-import { FiChevronRight, FiDownload } from "react-icons/fi";
-import { PiShareFatBold } from "react-icons/pi";
+import { FiChevronRight, FiX } from "react-icons/fi";
 import FilterHospital from "../components/filterHospitals";
 import ReactPaginate from "react-paginate";
 import "../index.css";
@@ -35,11 +33,30 @@ function HospitalPage() {
     currentPage,
     setCurrentPage,
     pageCount,
+    setSearchTerm,
+    setSelectedState,
+    setSelectedType
   } = useHospitalData();
 
   const handlePageClick = (data: { selected: SetStateAction<number> }) => {
     setCurrentPage(data.selected);
   };
+
+
+  const handleStateFilterChange = (selected: string[]) => {
+    setSelectedState(selected);
+  };
+
+  const handleTypeFilterChange = (selected: string[]) => {
+    setSelectedType(selected);
+  };
+
+  const handleClearFilter = () => {
+    setSearchTerm("")
+    setSelectedState([])
+    setSelectedType([])
+    setCurrentPage(0)
+  }
   return (
     <>
       <Container
@@ -62,7 +79,7 @@ function HospitalPage() {
             alignItems={"center"}
             justifyContent={"space-between"}
           >
-            <SearchBar />
+            <SearchBar onSearch={setSearchTerm} />
             <ExportModal exportData={csvData} />
             <ShareButton />
           </Flex>
@@ -92,15 +109,21 @@ function HospitalPage() {
           </Box>
 
           {/* FILTER SECTION */}
-          <Box display={"flex"} gap={8} alignItems={"center"} marginBlockStart={8}>
+          <Box display={"flex"} gap={8} alignItems={"center"} marginBlockStart={8} justifyContent={'space-between'}>
+            <Stack gap={8} flexDirection={'row'} alignItems={'center'}>
             <Text fontFamily={'Open sans'} fontWeight={'semibold'}>Filter:</Text>
             <Stack direction={"row"} spacing={10}>
               <FilterHospital
                 filterCategory={uniqueState}
                 categoryName="Location"
+                onFilterChange={handleStateFilterChange}
               />
-              <FilterHospital filterCategory={uniqueType} categoryName="Type" />
+              <FilterHospital filterCategory={uniqueType} categoryName="Type" onFilterChange={handleTypeFilterChange} />
             </Stack>
+            </Stack>
+            <Button rightIcon={<FiX />} variant={'unstyled'} display={'flex'} onClick={handleClearFilter} color={'#84868C'}>
+                Clear Filter
+            </Button>
           </Box>
           {/* HOSPITAL RENDERING */}
           <Box display="flex" flexDirection={"column"} gap={6}>

@@ -1,3 +1,4 @@
+import { useState } from "react";
 import {
   Icon,
   Button,
@@ -9,11 +10,28 @@ import {
 } from "@chakra-ui/react";
 import { FiSearch } from "react-icons/fi";
 
-function SearchBar() {
+interface SearchBarProps {
+  onSearch: (term: string) => void;
+}
+
+const SearchBar: React.FC<SearchBarProps> = ({ onSearch }) => {
+  const [searchTerm, setSearchTerm] = useState("");
+
   const placeholder = useBreakpointValue({
     base: "Search",
     md: "Search for a Hospital",
   });
+
+  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const value = event.target.value;
+    setSearchTerm(value);
+    onSearch(value); // Call the onSearch prop with the updated value
+  };
+
+  const handleSearchClick = () => {
+    onSearch(searchTerm);
+  };
+
   return (
     <>
       <InputGroup
@@ -44,6 +62,8 @@ function SearchBar() {
           _focus={{ boxShadow: "none" }}
           bgColor={"white"}
           borderColor={'#0E1AFB'}
+          value={searchTerm}
+          onChange={handleInputChange}
         />
         <InputRightAddon
           p={0}
@@ -67,6 +87,7 @@ function SearchBar() {
             }}
             transition={"all .5s ease"}
             bgColor={"white"}
+            onClick={handleSearchClick}
           >
             Search
           </Button>

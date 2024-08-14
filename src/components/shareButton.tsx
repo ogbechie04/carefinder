@@ -1,4 +1,3 @@
-import React, { useState } from "react";
 import {
   useClipboard,
   useToast,
@@ -17,7 +16,7 @@ import {
 import { PiShareFatBold } from "react-icons/pi";
 import linkIcon from "../assets/share-icons/link-icon.svg";
 import gmailIcon from "../assets/share-icons/gmail-logo.svg";
-import instagramIcon from "../assets/share-icons/instagram-logo.svg";
+import facebookIcon from "../assets/share-icons/facebook-logo.svg";
 import xIcon from "../assets/share-icons/X-logo.svg";
 import whatsappIcon from "../assets/share-icons/WhatsApp-logo.svg";
 import {
@@ -137,10 +136,10 @@ function ShareButton() {
                       _hover={{ background: "none" }}
                       _active={{ background: "none" }}
                     >
-                      <Image src={instagramIcon} />
+                      <Image src={facebookIcon} />
                     </Button>
                   </FacebookShareButton>
-                  <Text>Instagram</Text>
+                  <Text>Facebook</Text>
                 </Stack>
                 <Stack alignItems={"center"} spacing={3}>
                   <WhatsappShareButton url={shareURL}>

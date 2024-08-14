@@ -1,13 +1,24 @@
+import { useState } from "react";
 import { Menu, MenuButton, MenuList, MenuItem, Button, Stack, Text, Checkbox, Divider } from "@chakra-ui/react";
 import { FiChevronDown, FiChevronUp } from "react-icons/fi";
 import CapitalizeLetter from "../utils/capitalizeFirstLetter";
 
 interface filterHospitalProps {
   filterCategory: string[],
-  categoryName: string
+  categoryName: string,
+  onFilterChange: (selected: string[]) => void
 }
 
-const FilterHospital: React.FC<filterHospitalProps> = ({ filterCategory, categoryName }) => {
+const FilterHospital: React.FC<filterHospitalProps> = ({ filterCategory, categoryName, onFilterChange }) => {
+  const [selectedItems, setSelectedItems] = useState<string[]>([]);
+
+  const handleFilterChange = (item: string) => {
+    const updatedSelection = selectedItems.includes(item) ? selectedItems.filter((i) => i !== item) : [...selectedItems, item]
+
+    setSelectedItems(updatedSelection)
+    onFilterChange(updatedSelection)
+  }
+
   return (
       <Menu isLazy>
         {({ isOpen }) => (
@@ -35,17 +46,17 @@ const FilterHospital: React.FC<filterHospitalProps> = ({ filterCategory, categor
         overflowY={"auto"}
         borderRadius={"xl"}
         paddingInline={4}
-        _hover={{ backgroundColor: "transparent" }}
+        _hover={{ backgroundColor: "white" }}
         sx={{
           "&::-webkit-scrollbar": {
             width: "0",
             height: "0",
           },
           "&::-webkit-scrollbar-thumb": {
-            background: "transparent",
+            background: "white",
           },
           "&::-webkit-scrollbar-track": {
-            background: "transparent",
+            background: "white",
           },
           "-webkit-overflow-scrolling": "touch",
           "-ms-overflow-style": "none",
@@ -61,6 +72,7 @@ const FilterHospital: React.FC<filterHospitalProps> = ({ filterCategory, categor
             _hover={{ backgroundColor: "none" }}
             _focus={{ backgroundColor: "none" }}
             transition={"all 0.9s ease"}
+            onClick={() => handleFilterChange(state)}
           >
             <Stack
               direction="row"
@@ -74,6 +86,7 @@ const FilterHospital: React.FC<filterHospitalProps> = ({ filterCategory, categor
                 iconColor={"#84868C"}
                 iconSize={1}
                 color={"#0E1AFB"}
+                isChecked={selectedItems.includes(state)}
               />
             </Stack>
             <Divider paddingBlock={1.5} />
