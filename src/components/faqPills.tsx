@@ -1,7 +1,7 @@
-import React from "react";
 import { Button } from "@chakra-ui/react";
 
-function FaqPills({ pillText }) {
+function FaqPills(props: { pillText: string; }) {
+  const {pillText} = props
   return (
     <>
       <Button

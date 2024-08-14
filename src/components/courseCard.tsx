@@ -1,4 +1,3 @@
-import React from "react";
 import Hospital from "../backend/hospital";
 import CapitalizeLetter from "../utils/capitalizeFirstLetter";
 import {
@@ -6,9 +5,7 @@ import {
   CardBody,
   Image,
   Stack,
-  Flex,
   Heading,
-  Button,
   Text,
 } from "@chakra-ui/react";
 

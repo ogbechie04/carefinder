@@ -1,4 +1,3 @@
-import React from "react";
 import {
   Text,
   Button,
@@ -15,7 +14,9 @@ import { CSVLink } from "react-csv";
 import { FiDownload } from "react-icons/fi";
 import check from "../assets/check.svg";
 
-function ExportModal(props) {
+
+
+function ExportModal(props: { exportData: any; }) {
   const { exportData } = props;
   const { isOpen, onOpen, onClose } = useDisclosure();
   const {

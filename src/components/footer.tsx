@@ -1,5 +1,4 @@
-import React from "react";
-import SearchBar from "./searchBar";
+// import SearchBar from "./searchBar";
 import { Box, Flex, Heading, Stack, Link } from "@chakra-ui/react";
 
 function Footer() {
@@ -27,7 +26,7 @@ function Footer() {
         >
           Finding the Best Hospitals in Nigeria
         </Heading>
-        <SearchBar />
+        {/* <SearchBar  /> */}
         <Flex
           gap={{ base: 8, md: "11.25rem" }}
           marginBlockStart={{ base: 5, md: "2.6875rem" }}

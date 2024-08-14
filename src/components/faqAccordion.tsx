@@ -10,7 +10,7 @@ import {
   Stack,
 } from "@chakra-ui/react";
 
-function FaqAccordion(props) {
+function FaqAccordion(props: { accordionHeading: string; panelText: string; }) {
   const { accordionHeading, panelText } = props;
   return (
     <>

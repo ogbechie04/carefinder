@@ -27,7 +27,7 @@ import {
 
 function ShareButton() {
   const shareURL = window.location.href;
-  const { hasCopied, onCopy } = useClipboard(shareURL);
+  const {  onCopy } = useClipboard(shareURL);
   const { isOpen, onOpen, onClose } = useDisclosure();
   const toast = useToast();
 

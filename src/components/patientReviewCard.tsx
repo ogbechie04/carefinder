@@ -9,9 +9,8 @@ import {
   Text,
 } from "@chakra-ui/react";
 import quotes from "../assets/patient-card-bg-image.svg";
-import React from "react";
 
-function PatientReviewCard(props) {
+function PatientReviewCard(props: { patientImage: string; patientName: string; patientReview: string; }) {
   const { patientImage, patientName, patientReview } = props;
   return (
     <>

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import PatientReviewCard from "./patientReviewCard";
 import { Box, IconButton, Stack, Text, Flex } from "@chakra-ui/react";
 import patientGeorge from "../assets/patient-George.svg";
