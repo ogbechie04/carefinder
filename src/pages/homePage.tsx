@@ -10,6 +10,7 @@ import {
   Stack,
   useBreakpointValue,
   Skeleton,
+  Image
 } from "@chakra-ui/react";
 import heroBlueBackground from "../assets/hero-section-bg.svg";
 import blogBrain from "../assets/blog-brain.svg";
@@ -45,20 +46,25 @@ function Home() {
             width={"100%"}
             height={{ base: "fit-content", lg: "45rem" }}
             position={"relative"}
-            bgColor={"#FAFAFA"}
+            bgColor={{base: "#3640FC", lg: "#FAFAFA"}}
           >
             <Box
               position={"absolute"}
               top={0}
               left={0}
               width={"100%"}
-              bgRepeat={"no-repeat"}
-              bgPosition={"right"}
-              bgSize={"cover"}
-              bgImage={`url(${heroBlueBackground})`}
               height={"100%"}
-              bgColor={{ base: "#3640FC", lg: "inherit" }}
-            ></Box>
+              zIndex={0}
+            >
+              <Image
+                src={heroBlueBackground}
+                alt="Hero Blue Background"
+                objectFit={"cover"}
+                width={"100%"}
+                height={"100%"}
+                display={{base: 'none', lg: 'block'}}
+              />
+            </Box>
             <Box
               position={"absolute"}
               top={0}
@@ -197,7 +203,7 @@ function Home() {
 
           {/* -------- TESTIMONIALS -------- */}
           <Flex
-            marginBlockStart={{base: 20, lg: "2.625rem"}}
+            marginBlockStart={{ base: 20, lg: "2.625rem" }}
             alignItems={"center"}
             justifyContent={"space-between"}
             gap={"2.375rem"}
@@ -269,7 +275,7 @@ function Home() {
                 process of finding and choosing the right hospital.
               </Text>
             </Box>
-            <Box alignSelf={{lg: "flex-start"}} marginBlockStart={14}>
+            <Box alignSelf={{ lg: "flex-start" }} marginBlockStart={14}>
               <Stack spacing={1.5}>
                 <Text
                   fontFamily={"Open Sans"}
@@ -301,33 +307,36 @@ function Home() {
                 </Stack>
               </Stack>
             </Box>
-                <SimpleGrid
-                  columns={4}
-                  columnGap={"6.375rem"}
-                  marginBlockStart={"3.8125rem"}
-                  justifyContent={"space-between"}
-                  display={{base: 'none', lg: 'grid'}}
-                >
-                  <FaqPills pillText={"Choosing a Hospital"} />
-                  <FaqPills pillText={"Visitor Policies and Amenities"} />
-                  <FaqPills pillText={"Insurance & Billing"} />
-                  <FaqPills pillText={"Preparing for Hospitalization"} />
-                </SimpleGrid>
-                <SimpleGrid
-                  columns={3}
-                  columnGap={"6.375rem"}
-                  marginBlockStart={"2.1875rem"}
-                  justifyContent={"space-between"}
-                  display={{base: 'none', lg: 'grid'}}
-
-                >
-                  <FaqPills pillText={"Hospital Stay and Discharge"} />
-                  <FaqPills pillText={"Patient Rights and Responsibilities"} />
-                  <FaqPills pillText={"Hospital Services"} />
-                </SimpleGrid>
+            <SimpleGrid
+              columns={4}
+              columnGap={"6.375rem"}
+              marginBlockStart={"3.8125rem"}
+              justifyContent={"space-between"}
+              display={{ base: "none", lg: "grid" }}
+            >
+              <FaqPills pillText={"Choosing a Hospital"} />
+              <FaqPills pillText={"Visitor Policies and Amenities"} />
+              <FaqPills pillText={"Insurance & Billing"} />
+              <FaqPills pillText={"Preparing for Hospitalization"} />
+            </SimpleGrid>
+            <SimpleGrid
+              columns={3}
+              columnGap={"6.375rem"}
+              marginBlockStart={"2.1875rem"}
+              justifyContent={"space-between"}
+              display={{ base: "none", lg: "grid" }}
+            >
+              <FaqPills pillText={"Hospital Stay and Discharge"} />
+              <FaqPills pillText={"Patient Rights and Responsibilities"} />
+              <FaqPills pillText={"Hospital Services"} />
+            </SimpleGrid>
 
             {/* -------- FAQ ACCORDION -------- */}
-            <Flex marginBlockStart={{base: "1.9375rem", lg: 16}} direction={"column"} gap={6}>
+            <Flex
+              marginBlockStart={{ base: "1.9375rem", lg: 16 }}
+              direction={"column"}
+              gap={6}
+            >
               <FaqAccordion
                 accordionHeading="How do I choose the right hospital for my medical needs?"
                 panelText="Consider factors such as the hospital's specialties, reputation, patient reviews, location, and whether it accepts your insurance. Consulting with your primary care physician for recommendations can also be helpful."
@@ -345,7 +354,7 @@ function Home() {
                 panelText="Bring personal identification, insurance information, a list of current medications, any necessary medical records, comfortable clothing, and personal hygiene items."
               />
             </Flex>
-            <Box marginBlockStart={{base: 12, lg: "20"}}>
+            <Box marginBlockStart={{ base: 12, lg: "20" }}>
               <Button
                 fontFamily={"Open Sans"}
                 color={"white"}
@@ -404,7 +413,7 @@ function Home() {
             <Flex
               gap={"2.375rem"}
               justifyContent={"space-between"}
-              flexDirection={['column', 'row']}
+              flexDirection={["column", "row"]}
               alignSelf={"stretch"}
             >
               <BlogCard
@@ -438,7 +447,7 @@ function Home() {
                 }
               />
             </Flex>
-            <Box marginBlockStart={{base: '1.0625rem', lg: "3.0625rem"}}>
+            <Box marginBlockStart={{ base: "1.0625rem", lg: "3.0625rem" }}>
               <Button
                 fontFamily={"Open Sans"}
                 color={"white"}

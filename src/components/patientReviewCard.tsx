@@ -7,6 +7,7 @@ import {
   Box,
   Heading,
   Text,
+  Image
 } from "@chakra-ui/react";
 import quotes from "../assets/patient-card-bg-image.svg";
 
@@ -24,11 +25,18 @@ function PatientReviewCard(props: { patientImage: string; patientName: string; p
         paddingInlineEnd={"0.625rem"}
         paddingInlineStart={6}
         minW={{base: '18rem', md: "38.875rem"}}
-        bgImage={`url(${quotes})`}
-        bgRepeat={"no-repeat"}
-        bgPosition={"bottom right"}
+        position="relative"
         gap={"1.9375rem"}
       >
+        <Image
+          src={quotes}
+          alt="Quotes Background"
+          position="absolute"
+          bottom={-2}
+          right={-2}
+          boxSize="15rem"
+          objectFit='fill'
+        />
         <CardHeader padding={"unset"}>
           <Flex alignItems={"center"} gap={4}>
             <Avatar name={patientName} src={patientImage} />
