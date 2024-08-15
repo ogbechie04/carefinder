@@ -20,7 +20,6 @@ import {
   MenuItem,
   MenuList,
 } from "@chakra-ui/react";
-import auth from "../firebaseConfig";
 
 import { FiChevronDown, FiChevronUp, FiMenu } from "react-icons/fi";
 import zoro from "../assets/profile-image.svg";
@@ -29,7 +28,6 @@ import useUserDetails from "../hooks/useUserDetails";
 function HamburgerMenu() {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const {userDetails, handleSignOut} = useUserDetails()
-
 
   return (
     <>
