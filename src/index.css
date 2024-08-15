@@ -23,3 +23,24 @@
   border-color: #0E1AFB;
   color: #0E1AFB
 }
+
+.w-md-editor {
+  border-radius: 8px;
+  background-color: #fff;
+}
+
+.w-md-editor .w-md-editor-text {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 20px;
+  color: #191a23;
+  background-color: #fff;
+  height: 100%;
+}
+
+/* Active toolbar button */
+.w-md-editor .w-md-editor-toolbar button.active {
+  background-color: #0e1afb;
+  color: #fff;
+}
+
+

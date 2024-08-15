@@ -73,7 +73,7 @@ function NavBar() {
           </Link>
           <Link
             as={ReactRouterLink}
-            to={userDetails ? "./HospitalPage" : "/login"}
+            to={userDetails ? "./addHospital" : "/login"}
             px={8}
             py={3}
             _hover={{ textDecoration: "none" }}

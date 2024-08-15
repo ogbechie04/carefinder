@@ -1,11 +1,11 @@
-import Home from "./pages/home.tsx";
+import Home from "./pages/homePage.tsx";
 import HospitalPage from "./pages/hospitalPage.tsx";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import SignUp from "../src/pages/signUp.tsx";
 import Login from "./pages/Login.tsx";
+import AddHospitalPage from "./pages/addHospitalPage.tsx";
 
 function App() {
-  //  console.log(window.location.href)
   return (
     <>
        <Router>
@@ -14,11 +14,9 @@ function App() {
            <Route path="/HospitalPage" element={<HospitalPage />} />
            <Route path="/signUp" element={<SignUp />} />
            <Route path="/login" element={<Login />} />
+           <Route path="/addHospital" element={<AddHospitalPage />} />
          </Routes>
        </Router>
-      {/*  <ShareButton /> */}
-      {/* <SignUp />
-      <Login /> */}
     </>
   );
 }
