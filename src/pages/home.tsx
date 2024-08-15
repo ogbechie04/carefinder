@@ -15,7 +15,7 @@ import blogBrain from "../assets/blog-brain.svg";
 import blogFood from "../assets/blog-food.svg";
 import blogHeart from "../assets/blog-heart.svg";
 import heroDoctor from "../assets/hero-doctors.svg";
-import SearchBar from "../components/searchBar";
+// import SearchBar from "../components/searchBar";
 import CourseCard from "../components/courseCard";
 import Carousel from "../components/carousel";
 import FaqPills from "../components/faqPills";
@@ -118,7 +118,7 @@ function Home() {
               paddingBlockEnd={{ base: 10, md: 16, lg: "unset" }}
               paddingBlockStart={{ base: 5, md: 12, lg: "unset" }}
             >
-              <SearchBar />
+              {/* <SearchBar /> */}
             </Box>
           </Box>
         </Flex>

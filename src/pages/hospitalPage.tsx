@@ -30,7 +30,6 @@ function HospitalPage() {
     csvData,
     uniqueState,
     uniqueType,
-    currentPage,
     setCurrentPage,
     pageCount,
     setSearchTerm,
