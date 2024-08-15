@@ -42,7 +42,7 @@ function Carousel() {
   }
   return (
     <>
-      <Box maxW={{base: '18rem', md: "38.875rem"}} overflow={'hidden'}>
+      <Box maxW={{base: '20rem', md: "38.875rem"}} overflow={'hidden'}>
         <Stack direction={"row"} spacing={6} alignItems={"center"} justifyContent={'flex-end'}>
           <Text
             fontFamily={"Open Sans"}

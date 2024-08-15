@@ -8,14 +8,14 @@ import {
   SimpleGrid,
   Button,
   Stack,
-  useBreakpointValue
+  useBreakpointValue,
+  Skeleton,
 } from "@chakra-ui/react";
 import heroBlueBackground from "../assets/hero-section-bg.svg";
 import blogBrain from "../assets/blog-brain.svg";
 import blogFood from "../assets/blog-food.svg";
 import blogHeart from "../assets/blog-heart.svg";
 import heroDoctor from "../assets/hero-doctors.svg";
-// import SearchBar from "../components/searchBar";
 import CourseCard from "../components/courseCard";
 import Carousel from "../components/carousel";
 import FaqPills from "../components/faqPills";
@@ -26,7 +26,7 @@ import useHospitalData from "../hooks/useHospitalData";
 import { Link } from "react-router-dom";
 
 function Home() {
-  const { hospitals } = useHospitalData()
+  const { hospitals, loading } = useHospitalData();
   const numCards = useBreakpointValue({ base: 3, md: 4, lg: 3 });
 
   return (
@@ -37,7 +37,7 @@ function Home() {
         maxW={"100%"}
         bgColor={"#FAFAFA"}
       >
-        {/* HEADER SECTION */}
+        {/* -------- HEADER SECTION -------- */}
         <Flex direction={"column"}>
           <NavBar />
           {/* HERO SECTION */}
@@ -91,7 +91,6 @@ function Home() {
                 fontSize={{ base: "4xl", lg: "5xl" }}
                 fontWeight={"medium"}
                 lineHeight={{ md: "4.5rem" }}
-                // wordBreak={"break-word"}
                 color={{ base: "white", lg: "#1A1A1A" }}
               >
                 Find the Best Hospital for Your Needs
@@ -123,15 +122,19 @@ function Home() {
           </Box>
         </Flex>
 
-        {/* MAIN SECTION */}
+        {/* -------- MAIN SECTION -------- */}
         <Container
           margin={"unset"}
-          marginBlockStart={{base: 16, md: 20, lg: 28}}
+          marginBlockStart={{ base: 16, md: 20, lg: 28 }}
           paddingInline={{ base: "2rem", md: "3rem", lg: "4.9375rem" }}
           maxW={"100%"}
         >
-          {/* FEATURED HOSPITALS */}
-          <Flex direction={"column"} gap={{base: 16, md: 20}} alignItems={"center"}>
+          {/* -------- FEATURED HOSPITALS -------- */}
+          <Flex
+            direction={"column"}
+            gap={{ base: 12, lg: 20 }}
+            alignItems={"center"}
+          >
             <Box
               display={"flex"}
               flexDirection={"column"}
@@ -139,12 +142,12 @@ function Home() {
               fontFamily={"Open Sans"}
               fontWeight={"semibold"}
               gap={4}
-              textAlign={'center'}
+              textAlign={"center"}
             >
               <Heading
                 fontFamily={"Poppins"}
                 fontWeight={"inherit"}
-                fontSize={"2rem"}
+                fontSize={{ base: "2xl", md: "2rem" }}
                 color={"#020887"}
               >
                 FIND THE TOP HOSPITALS NEAR YOU
@@ -160,51 +163,63 @@ function Home() {
                 health needs.
               </Text>
             </Box>
-            <SimpleGrid columns={{ sm: 1, md: 2, lg: 3 }} gap={"2.375rem"}>
-              {hospitals.slice(0, numCards).map((hospital, index) => (
-                <CourseCard key={index} hospital={hospital} />
-              ))}
-            </SimpleGrid>
+            {loading ? (
+              <SimpleGrid columns={{ sm: 1, md: 2, lg: 3 }} gap={"2.375rem"}>
+                <Skeleton h="22.875rem" w="25.125rem" />
+                <Skeleton h="22.875rem" w="25.125rem" />
+                <Skeleton h="22.875rem" w="25.125rem" />
+              </SimpleGrid>
+            ) : (
+              <SimpleGrid columns={{ sm: 1, md: 2, lg: 3 }} gap={"2.375rem"}>
+                {hospitals.slice(0, numCards).map((hospital, index) => (
+                  <CourseCard key={index} hospital={hospital} />
+                ))}
+              </SimpleGrid>
+            )}
             <Box>
-              <Link to={'/HospitalPage'}>
-              <Button
-                fontFamily={"Open Sans"}
-                color={"white"}
-                bgColor={"#0E1AFB"}
-                paddingInline={8}
-                paddingBlock={3}
-                variant={"solid"}
-                borderRadius={"1.75rem"}
-                _hover={{ textDecoration: "none", bgColor: "#030EDD" }}
-                transition={"all 0.5s ease"}
-              >
-                View More Hospitals
-              </Button>
+              <Link to={"/HospitalPage"}>
+                <Button
+                  fontFamily={"Open Sans"}
+                  color={"white"}
+                  bgColor={"#0E1AFB"}
+                  paddingInline={8}
+                  paddingBlock={3}
+                  variant={"solid"}
+                  borderRadius={"1.75rem"}
+                  _hover={{ textDecoration: "none", bgColor: "#030EDD" }}
+                  transition={"all 0.5s ease"}
+                >
+                  View More Hospitals
+                </Button>
               </Link>
             </Box>
           </Flex>
 
-          {/* TESTIMONIALS */}
+          {/* -------- TESTIMONIALS -------- */}
           <Flex
-            mt={"2.625rem"}
+            marginBlockStart={{base: 20, lg: "2.625rem"}}
             alignItems={"center"}
             justifyContent={"space-between"}
             gap={"2.375rem"}
-            direction={{ base: 'column', md: 'row'}}
+            direction={{ base: "column", lg: "row" }}
           >
             <Box
               display={"flex"}
               flexDirection={"column"}
-              alignItems={"flex-start"}
+              alignItems={{
+                base: "flex-start",
+                md: "center",
+                lg: "flex-start",
+              }}
               fontFamily={"Open Sans"}
               fontWeight={"semibold"}
               gap={4}
-              textAlign={{base: 'center', md: "left"}}
+              textAlign={{ base: "justify", md: "center", lg: "left" }}
             >
               <Heading
                 fontFamily={"Poppins"}
                 fontWeight={"inherit"}
-                fontSize={"2rem"}
+                fontSize={{ base: "2xl", md: "2rem" }}
                 color={"#020887"}
               >
                 WHAT ARE PATIENTS SAYING
@@ -219,7 +234,7 @@ function Home() {
             <Carousel />
           </Flex>
 
-          {/* RESOURCES SECTION */}
+          {/* -------- RESOURCES SECTION -------- */}
           <Flex
             marginBlockStart={"6.5rem"}
             alignItems={"center"}
@@ -229,7 +244,7 @@ function Home() {
             <Box
               display={"flex"}
               flexDirection={"column"}
-              alignItems={"center"}
+              alignItems={{ base: "flex-start", md: "center" }}
               justifyContent={"center"}
               fontFamily={"Open Sans"}
               fontWeight={"semibold"}
@@ -238,14 +253,14 @@ function Home() {
               <Heading
                 fontFamily={"Poppins"}
                 fontWeight={"inherit"}
-                fontSize={"2rem"}
+                fontSize={{ base: "2xl", md: "2rem" }}
                 color={"#020887"}
               >
                 EDUCATE YOURSELF!
               </Heading>
               <Text
                 fontSize={"0.875rem"}
-                textAlign={"center"}
+                textAlign={{ base: "justify", md: "center" }}
                 maxW={"66.375rem"}
               >
                 Access a wealth of health articles, tips, and guides to stay
@@ -254,11 +269,11 @@ function Home() {
                 process of finding and choosing the right hospital.
               </Text>
             </Box>
-            <Box alignSelf={"flex-start"} marginBlockStart={14}>
+            <Box alignSelf={{lg: "flex-start"}} marginBlockStart={14}>
               <Stack spacing={1.5}>
                 <Text
                   fontFamily={"Open Sans"}
-                  fontSize={"2xl"}
+                  fontSize={{ base: "lg", md: "2xl" }}
                   fontWeight={"bold"}
                   color={"#191A23"}
                 >
@@ -286,31 +301,33 @@ function Home() {
                 </Stack>
               </Stack>
             </Box>
-            {/* <Box> */}
-            <SimpleGrid
-              columns={[1, 2, 3, 4]}
-              columnGap={"6.375rem"}
-              marginBlockStart={"3.8125rem"}
-              justifyContent={"space-between"}
-            >
-              <FaqPills pillText={"Choosing a Hospital"} />
-              <FaqPills pillText={"Visitor Policies and Amenities"} />
-              <FaqPills pillText={"Insurance & Billing"} />
-              <FaqPills pillText={"Preparing for Hospitalization"} />
-            </SimpleGrid>
-            <SimpleGrid
-              columns={[1, 2, 3]}
-              columnGap={"6.375rem"}
-              marginBlockStart={"2.1875rem"}
-              justifyContent={"space-between"}
-            >
-              <FaqPills pillText={"Hospital Stay and Discharge"} />
-              <FaqPills pillText={"Patient Rights and Responibilities"} />
-              <FaqPills pillText={"Hospital Services"} />
-            </SimpleGrid>
-            {/* </Box> */}
-            {/* FAQ ACCORDION */}
-            <Flex marginBlockStart={16} direction={"column"} gap={6}>
+                <SimpleGrid
+                  columns={4}
+                  columnGap={"6.375rem"}
+                  marginBlockStart={"3.8125rem"}
+                  justifyContent={"space-between"}
+                  display={{base: 'none', lg: 'grid'}}
+                >
+                  <FaqPills pillText={"Choosing a Hospital"} />
+                  <FaqPills pillText={"Visitor Policies and Amenities"} />
+                  <FaqPills pillText={"Insurance & Billing"} />
+                  <FaqPills pillText={"Preparing for Hospitalization"} />
+                </SimpleGrid>
+                <SimpleGrid
+                  columns={3}
+                  columnGap={"6.375rem"}
+                  marginBlockStart={"2.1875rem"}
+                  justifyContent={"space-between"}
+                  display={{base: 'none', lg: 'grid'}}
+
+                >
+                  <FaqPills pillText={"Hospital Stay and Discharge"} />
+                  <FaqPills pillText={"Patient Rights and Responsibilities"} />
+                  <FaqPills pillText={"Hospital Services"} />
+                </SimpleGrid>
+
+            {/* -------- FAQ ACCORDION -------- */}
+            <Flex marginBlockStart={{base: "1.9375rem", lg: 16}} direction={"column"} gap={6}>
               <FaqAccordion
                 accordionHeading="How do I choose the right hospital for my medical needs?"
                 panelText="Consider factors such as the hospital's specialties, reputation, patient reviews, location, and whether it accepts your insurance. Consulting with your primary care physician for recommendations can also be helpful."
@@ -328,7 +345,7 @@ function Home() {
                 panelText="Bring personal identification, insurance information, a list of current medications, any necessary medical records, comfortable clothing, and personal hygiene items."
               />
             </Flex>
-            <Box marginBlockStart={20}>
+            <Box marginBlockStart={{base: 12, lg: "20"}}>
               <Button
                 fontFamily={"Open Sans"}
                 color={"white"}
@@ -345,7 +362,7 @@ function Home() {
             </Box>
           </Flex>
 
-          {/* BLOG SECTION */}
+          {/* -------- BLOG SECTION -------- */}
           <Flex
             marginBlockStart={16}
             direction={"column"}
@@ -387,6 +404,7 @@ function Home() {
             <Flex
               gap={"2.375rem"}
               justifyContent={"space-between"}
+              flexDirection={['column', 'row']}
               alignSelf={"stretch"}
             >
               <BlogCard
@@ -420,7 +438,7 @@ function Home() {
                 }
               />
             </Flex>
-            <Box marginBlockStart={"3.0625rem"}>
+            <Box marginBlockStart={{base: '1.0625rem', lg: "3.0625rem"}}>
               <Button
                 fontFamily={"Open Sans"}
                 color={"white"}
@@ -438,7 +456,7 @@ function Home() {
           </Flex>
         </Container>
 
-        {/* FOOTER */}
+        {/* -------- FOOTER -------- */}
         <Container
           margin={"unset"}
           marginBlockStart={14}

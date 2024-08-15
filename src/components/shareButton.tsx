@@ -12,6 +12,7 @@ import {
   Image,
   Text,
   Flex,
+  Box,
 } from "@chakra-ui/react";
 import { PiShareFatBold } from "react-icons/pi";
 import linkIcon from "../assets/share-icons/link-icon.svg";
@@ -27,7 +28,7 @@ import {
 
 function ShareButton() {
   const shareURL = window.location.href;
-  const {  onCopy } = useClipboard(shareURL);
+  const { onCopy } = useClipboard(shareURL);
   const { isOpen, onOpen, onClose } = useDisclosure();
   const toast = useToast();
 
@@ -47,19 +48,22 @@ function ShareButton() {
     <>
       <Button
         rightIcon={<PiShareFatBold />}
+        display={"flex"}
         fontFamily={"Open Sans"}
         color={"#191A23"}
-        bgColor={"white"}
+        bgColor={{base: 'none', lg:"white"}}
         paddingInline={8}
         paddingBlock={3}
-        variant={"outline"}
+        variant={{base: 'unstyled', lg:"outline"}}
         borderRadius={"2.8125rem"}
         _hover={{ textDecoration: "none" }}
         fontWeight={"semibold"}
+        justifyContent={{ base: "center", lg: "space-between" }}
+        textAlign={"center"}
         gap={0.5}
         onClick={onOpen}
       >
-        Share
+        <Box display={{ base: "none", lg: "block" }}>Share</Box>
       </Button>
 
       <Modal isOpen={isOpen} onClose={onClose} size={"xl"}>
@@ -123,7 +127,7 @@ function ShareButton() {
                       <Image src={xIcon} />
                     </Button>
                   </TwitterShareButton>
-                    <Text>X</Text>
+                  <Text>X</Text>
                 </Stack>
                 <Stack alignItems={"center"} spacing={3}>
                   <FacebookShareButton url={shareURL}>

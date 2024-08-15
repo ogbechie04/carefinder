@@ -9,6 +9,7 @@ import {
   useDisclosure,
   Stack,
   Image,
+  Box,
 } from "@chakra-ui/react";
 import { CSVLink } from "react-csv";
 import { FiDownload } from "react-icons/fi";
@@ -38,10 +39,10 @@ function ExportModal(props: { exportData: any; }) {
       <Button
         fontFamily={"Open Sans"}
         color={"#191A23"}
-        bgColor={"white"}
+        bgColor={{base: 'none', lg:"white"}}
         paddingInline={8}
         paddingBlock={3}
-        variant={"outline"}
+        variant={{base: 'unstyled', lg:"outline"}}
         borderRadius={"2.8125rem"}
         _hover={{ textDecoration: "none" }}
         fontWeight={"semibold"}
@@ -49,10 +50,10 @@ function ExportModal(props: { exportData: any; }) {
         gap={0.5}
         onClick={onOpen}
       >
-        Export
+        <Box display={{ base: "none", lg: "block" }}>Export</Box>
       </Button>
 
-      <Modal isOpen={isOpen} onClose={onClose} size={"lg"}>
+      <Modal isOpen={isOpen} onClose={onClose} size={{base: 'xs', md:"lg"}}>
         <ModalOverlay />
         <ModalContent borderRadius={"xl"}>
           <ModalCloseButton />
@@ -87,7 +88,7 @@ function ExportModal(props: { exportData: any; }) {
         </ModalContent>
       </Modal>
 
-      <Modal isOpen={isNestedOpen} onClose={onNestedClose}>
+      <Modal isOpen={isNestedOpen} onClose={onNestedClose} size={{base: 'xs', md:"lg"}}>
         <ModalOverlay />
         <ModalContent>
           <ModalCloseButton />

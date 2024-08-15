@@ -7,7 +7,7 @@ function FaqPills(props: { pillText: string; }) {
       <Button
         color={"#0E1AFB"}
         borderColor={"#0E1AFB"}
-        paddingInline={8}
+        paddingInline={{base: 4, md: 8}}
         paddingBlock={3}
         variant={"outline"}
         borderRadius={"2.8125rem"}
@@ -19,9 +19,9 @@ function FaqPills(props: { pillText: string; }) {
         }}
         transition={"all .5s ease"}
         bgColor={"white"}
-        fontSize={"medium"}
+        fontSize={{base: 'small', md: "medium"}}
         fontWeight={"normal"}
-        // width={'fit-content'}
+        width={'fit-content'}
       >
         {pillText}
       </Button>

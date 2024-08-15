@@ -32,7 +32,7 @@ function FaqAccordion(props: { accordionHeading: string; panelText: string; }) {
               padding={"unset"}
               paddingBlock={"1.875rem"}
               paddingInline={10}
-              w={{ md: "52.625rem" }}
+              w={{ md: '42rem', lg: "52.625rem" }}
               _hover={{ backgroundColor: "none" }}
               _expanded={{ color: "#84868c", paddingBlockEnd: 3.5 }}
               transition="color 0.5s ease, font-size 0.3s ease"

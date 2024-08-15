@@ -17,13 +17,13 @@ function PatientReviewCard(props: { patientImage: string; patientName: string; p
       <Card
         fontFamily={"Open Sans"}
         w={"fit-content"}
-        h={{base: 'fit-content'}}
+        minH={{base: '25.375rem', md: '18rem'}}
         borderRadius={"lg"}
         paddingBlockStart={4}
         paddingBlockEnd={"4.0625rem"}
         paddingInlineEnd={"0.625rem"}
         paddingInlineStart={6}
-        maxW={{base: '18rem', md: "38.875rem"}}
+        minW={{base: '18rem', md: "38.875rem"}}
         bgImage={quotes}
         bgRepeat={"no-repeat"}
         bgPosition={"bottom right"}

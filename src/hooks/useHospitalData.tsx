@@ -12,11 +12,13 @@ function useHospitalData() {
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedState, setSelectedState] = useState<string[]>([]);
   const [selectedType, setSelectedType] = useState<string[]>([]);
+  const [loading, setLoading] = useState<boolean>(true)
 
-  const itemsPerPage = 15;
+  const itemsPerPage = 18;
 
   useEffect(() => {
     async function fetchData() {
+      setLoading(true)
       try {
         const response = await hospitalList();
         setHospitals(response);
@@ -41,6 +43,7 @@ function useHospitalData() {
       } catch {
         console.error("Error fecthcing repositories");
       }
+      setLoading(false)
     }
 
     fetchData();
@@ -74,6 +77,7 @@ function useHospitalData() {
     setSearchTerm,
     setSelectedState,
     setSelectedType,
+    loading
   };
 }
 

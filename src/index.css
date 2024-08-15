@@ -10,6 +10,9 @@
   list-style: none;
   font-family: 'Open Sans';
   font-weight: 500;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding-inline: 10px;
 }
 
 .page-item{
@@ -22,6 +25,12 @@
 .active {
   border-color: #0E1AFB;
   color: #0E1AFB
+}
+
+@media (max-width: 767px) {
+  .pagination {
+    gap: 5px;
+  }
 }
 
 .w-md-editor {

@@ -34,7 +34,7 @@ const FilterHospital: React.FC<filterHospitalProps> = ({ filterCategory, categor
         _hover={{ backgroundColor: "none" }}
         _focus={{ backgroundColor: "none" }}
         _active={{ backgroundColor: "none" }}
-        paddingInline={8}
+        paddingInline={{base: 2, md: 8}}
         paddingBlock={3}
         gap={0.5}
       >
