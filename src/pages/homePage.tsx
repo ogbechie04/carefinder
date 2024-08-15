@@ -55,7 +55,7 @@ function Home() {
               bgRepeat={"no-repeat"}
               bgPosition={"right"}
               bgSize={"cover"}
-              bgImage={`url(${new URL(heroBlueBackground, import.meta.url).href})`}
+              bgImage={`url(${heroBlueBackground})`}
               height={"100%"}
               bgColor={{ base: "#3640FC", lg: "inherit" }}
             ></Box>
