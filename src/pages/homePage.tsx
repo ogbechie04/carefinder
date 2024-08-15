@@ -55,7 +55,7 @@ function Home() {
               bgRepeat={"no-repeat"}
               bgPosition={"right"}
               bgSize={"cover"}
-              bgImage={heroBlueBackground}
+              bgImage={`url(${new URL(heroBlueBackground, import.meta.url).href})`}
               height={"100%"}
               bgColor={{ base: "#3640FC", lg: "inherit" }}
             ></Box>
@@ -177,7 +177,7 @@ function Home() {
               </SimpleGrid>
             )}
             <Box>
-              <Link to={"/HospitalPage"}>
+              <Link to={"/hospitals"}>
                 <Button
                   fontFamily={"Open Sans"}
                   color={"white"}

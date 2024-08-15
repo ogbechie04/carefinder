@@ -55,7 +55,7 @@ function NavBar() {
         >
           <Link
             as={ReactRouterLink}
-            to={"/HospitalPage"}
+            to={"/hospitals"}
             px={8}
             py={3}
             _hover={{ textDecoration: "none" }}

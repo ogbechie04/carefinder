@@ -25,10 +25,8 @@ export default async function hospitalList(): Promise<Hospital[]> {
     }
     const str = await response.Body.transformToString();
     const data: ResponseHospital[] = JSON.parse(str);
-    console.log(data[0].phone_number);
 
     return data.map((hospital) => buildHospital(hospital));
-    // console.log(str);
   } catch (err) {
     console.error(err);
     return [];

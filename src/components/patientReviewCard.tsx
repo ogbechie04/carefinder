@@ -24,7 +24,7 @@ function PatientReviewCard(props: { patientImage: string; patientName: string; p
         paddingInlineEnd={"0.625rem"}
         paddingInlineStart={6}
         minW={{base: '18rem', md: "38.875rem"}}
-        bgImage={quotes}
+        bgImage={`url(${new URL(quotes, import.meta.url).href})`}
         bgRepeat={"no-repeat"}
         bgPosition={"bottom right"}
         gap={"1.9375rem"}

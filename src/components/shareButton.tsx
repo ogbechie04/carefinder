@@ -13,6 +13,7 @@ import {
   Text,
   Flex,
   Box,
+  Icon,
 } from "@chakra-ui/react";
 import { PiShareFatBold } from "react-icons/pi";
 import linkIcon from "../assets/share-icons/link-icon.svg";
@@ -25,6 +26,7 @@ import {
   TwitterShareButton,
   WhatsappShareButton,
 } from "react-share";
+import { FiCheckCircle } from "react-icons/fi";
 
 function ShareButton() {
   const shareURL = window.location.href;
@@ -39,9 +41,12 @@ function ShareButton() {
       status: "success",
       duration: 2000,
       isClosable: true,
-      containerStyle: {
-        backgroundClip: "#0E1AFB",
-      },
+      render: () => (
+        <Box color="white" p={3} bg="#0E1AFB" borderRadius="md" display={'flex'} alignItems={'center'} gap={4}>
+          <Icon as={FiCheckCircle} />
+          <Text>Link successfully copied to clipboard!</Text>
+        </Box>
+      ),
     });
   };
   return (

@@ -11,6 +11,8 @@ import {
   Text,
   FormErrorMessage,
   Stack,
+  useToast,
+  Icon,
 } from "@chakra-ui/react";
 import {Link as ReactRouterLink, useNavigate} from "react-router-dom";
 import NavBar from "../components/navbar";
@@ -18,6 +20,7 @@ import { createUserWithEmailAndPassword } from "firebase/auth";
 import auth, { db } from "../firebaseConfig.ts";
 import {  doc, setDoc } from "firebase/firestore";
 import { useState } from "react";
+import { FiCheckCircle } from "react-icons/fi";
 
 function SignUp() {
   const [email, setEmail] = useState<string>("");
@@ -27,6 +30,7 @@ function SignUp() {
   const [emailError, setEmailError] = useState<boolean>(false);
   const [passwordError, setPasswordError] = useState<boolean>(false);
   const navigate = useNavigate()
+  const toast = useToast()
 
   const handleSignUp = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -47,7 +51,18 @@ function SignUp() {
         await createUserWithEmailAndPassword(auth, email, password);
         const user = auth.currentUser
         console.log(user)
-        console.log('User is registered successfully')
+        toast({
+          title: "Registration Successful!",
+          status: "success",
+          duration: 2000,
+          isClosable: true,
+          render: () => (
+            <Box color="white" p={3} bg="#0E1AFB" borderRadius="md" display={'flex'} alignItems={'center'} gap={4}>
+              <Icon as={FiCheckCircle} />
+              <Text>Registration Successful!</Text>
+            </Box>
+          ),
+        });
         if(user) {
             await setDoc(doc(db, 'Users', user.uid), {
                 email: user.email,

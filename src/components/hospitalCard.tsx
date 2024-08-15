@@ -11,6 +11,7 @@ import {
 } from "@chakra-ui/react";
 import Hospital from "../backend/hospital";
 import CapitalizeLetter from "../utils/capitalizeFirstLetter";
+import CleanPhoneNumber from "../utils/cleanPhoneNumber";
 import arrow from "../assets/icons/thick-right-arrow.svg";
 import { FiHome, FiMapPin, FiPhone, FiMail } from "react-icons/fi";
 
@@ -45,7 +46,7 @@ function HospitalCard(props: { hospital: Hospital }) {
             </Stack>
             <Stack direction={'row'} align={'center'} spacing={3}>
                 <Icon as={FiPhone} boxSize={5} color={'#84868C'}></Icon>
-                <Text fontSize={'sm'}>{props.hospital.phoneNumber?.join(' ')}</Text>
+                <Text fontSize={'sm'}>{CleanPhoneNumber(props.hospital.phoneNumber)?.join(' ')}</Text>
             </Stack>
             <Stack direction={'row'} align={'center'} spacing={3}>
                 <Icon as={FiMail} boxSize={5} color={'#84868C'}></Icon>

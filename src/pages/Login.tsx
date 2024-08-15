@@ -8,21 +8,27 @@ import {
   Input,
   Button,
   Text,
-  FormErrorMessage,
   Stack,
   Link,
+  FormErrorMessage,
+  FormHelperText,
+  useToast,
+  Icon,
 } from "@chakra-ui/react";
 import { Link as ReactRouterLink, useNavigate } from "react-router-dom";
 import NavBar from "../components/navbar";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import auth from "../firebaseConfig.ts";
 import { useState } from "react";
+import { FiCheckCircle } from "react-icons/fi";
 
 function LogIn() {
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [emailError, setEmailError] = useState<boolean>(false);
   const [passwordError, setPasswordError] = useState<boolean>(false);
+  const toast = useToast()
+
   const navigate = useNavigate();
 
   const handleLogIn = async (e: React.FormEvent) => {
@@ -31,25 +37,38 @@ function LogIn() {
     setEmailError(false);
     setPasswordError(false);
 
-    if (!email) {
+    if (email === "") {
       setEmailError(true);
     }
 
-    if (!password) {
+    if (password === "") {
       setPasswordError(true);
     }
 
-    if (email && password) {
-      try {
-        await signInWithEmailAndPassword(auth, email, password);
-        console.log("User logged in successfully");
-        navigate("/");
-      } catch (error) {
-        if (error instanceof Error) {
-          console.error("Error Signing Up:", error.message);
-        } else {
-          console.error("An unknown error occurred.");
-        }
+    if (email === "" || password === "") {
+      return;
+    }
+
+    try {
+      await signInWithEmailAndPassword(auth, email, password);
+      toast({
+        title: "Login successful!",
+        status: "success",
+        duration: 2000,
+        isClosable: true,
+        render: () => (
+          <Box color="white" p={3} bg="#0E1AFB" borderRadius="md" display={'flex'} alignItems={'center'} gap={4}>
+            <Icon as={FiCheckCircle} />
+            <Text>Login successful!</Text>
+          </Box>
+        ),
+      });
+      navigate("/");
+    } catch (error) {
+      if (error instanceof Error) {
+        console.error("Error Signing Up:", error.message);
+      } else {
+        console.error("An unknown error occurred.");
       }
     }
   };
@@ -115,7 +134,11 @@ function LogIn() {
                   backgroundColor={"#F4F6FA"}
                   focusBorderColor="#0E1AFB"
                 />
-                {emailError && (
+                {!emailError ? (
+                  <FormHelperText>
+                    Enter the email you'd like to receive the newsletter on.
+                  </FormHelperText>
+                ) : (
                   <FormErrorMessage>Email is required.</FormErrorMessage>
                 )}
               </FormControl>
@@ -146,7 +169,11 @@ function LogIn() {
                   backgroundColor={"#F4F6FA"}
                   focusBorderColor="#0E1AFB"
                 />
-                {passwordError && (
+                {!passwordError ? (
+                  <FormHelperText>
+                    Enter the email you'd like to receive the newsletter on.
+                  </FormHelperText>
+                ) : (
                   <FormErrorMessage>Password is required.</FormErrorMessage>
                 )}
               </FormControl>

@@ -52,7 +52,7 @@ function HamburgerMenu() {
               flexDirection={'column'}
               justifyContent={'center'}
             >
-              <Link as={ReactRouterLink} to={'/HospitalPage'} px={8} py={3} _hover={{ textDecoration: "none" }}>
+              <Link as={ReactRouterLink} to={'/hospitals'} px={8} py={3} _hover={{ textDecoration: "none" }}>
                 Explore
               </Link>
               <Link px={8} py={3} _hover={{ textDecoration: "none" }}>

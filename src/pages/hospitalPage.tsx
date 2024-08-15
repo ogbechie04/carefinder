@@ -156,7 +156,7 @@ function HospitalPage() {
               Clear Filter
             </Button>
           </Box>
-          {/* HOSPITAL RENDERING */}
+          {/* -------- HOSPITAL RENDERING -------- */}
           <Box display="flex" flexDirection={"column"} gap={6}>
             {loading ? (
               <SimpleGrid
@@ -183,6 +183,8 @@ function HospitalPage() {
                 })}
               </SimpleGrid>
             )}
+
+            {/* -------- PAGINATE -------- */}
             <ReactPaginate
               previousLabel={"<"}
               nextLabel={">"}
