@@ -24,7 +24,6 @@ function SignUp() {
   const [password, setPassword] = useState<string>("");
   const [fname, setFname] = useState<string>("");
   const [lname, setLname] = useState<string>("");
-  const [error, setError] = useState<string | null>(null);
   const [emailError, setEmailError] = useState<boolean>(false);
   const [passwordError, setPasswordError] = useState<boolean>(false);
   const navigate = useNavigate()
@@ -60,7 +59,6 @@ function SignUp() {
       } catch (error) {
         if (error instanceof Error) {
           console.error("Error Signing Up:", error.message);
-          setError(error.message);
         } else {
           console.error("An unknown error occurred.");
         }

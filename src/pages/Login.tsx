@@ -21,7 +21,6 @@ import { useState } from "react";
 function LogIn() {
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
-  const [error, setError] = useState<string | null>(null);
   const [emailError, setEmailError] = useState<boolean>(false);
   const [passwordError, setPasswordError] = useState<boolean>(false);
   const navigate = useNavigate();
@@ -48,7 +47,6 @@ function LogIn() {
       } catch (error) {
         if (error instanceof Error) {
           console.error("Error Signing Up:", error.message);
-          setError(error.message);
         } else {
           console.error("An unknown error occurred.");
         }
