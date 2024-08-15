@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { Link as ReactRouterLink } from "react-router-dom";
 import {
   useDisclosure,
@@ -15,17 +14,20 @@ import {
   Box,
   Stack,
   Button,
+  Menu,
+  MenuButton,
+  MenuDivider,
+  MenuItem,
+  MenuList,
 } from "@chakra-ui/react";
-import { FiChevronDown, FiMenu } from "react-icons/fi";
+
+import { FiChevronDown, FiChevronUp, FiMenu } from "react-icons/fi";
 import zoro from "../assets/profile-image.svg";
+import useUserDetails from "../hooks/useUserDetails";
 
 function HamburgerMenu() {
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-
-  const handleAuth = () => {
-    setIsLoggedIn(!isLoggedIn);
-  };
+  const {userDetails, handleSignOut} = useUserDetails()
 
   return (
     <>
@@ -62,67 +64,79 @@ function HamburgerMenu() {
               <Link px={8} py={3} _hover={{ textDecoration: "none" }}>
                 Contact Us
               </Link>
-              {/* Show Add Hospital if User is logged in or not */}
-              {isLoggedIn ? (
-                <Link px={8} py={3} _hover={{ textDecoration: "none" }}>
-                  Add a hospital
-                </Link>
-              ) : (
-                <Link
-                  px={8}
-                  py={3}
-                  display={"none"}
-                  _hover={{ textDecoration: "none" }}
+              <Link
+            as={ReactRouterLink}
+            to={userDetails ? "./HospitalPage" : "/login"}
+            px={8}
+            py={3}
+            _hover={{ textDecoration: "none" }}
+          >
+            Add a hospital
+          </Link>
+          {/* TO-DO: Show User Profile is user is logged in or Log In Button */}
+          {userDetails ? (
+            <Menu>
+            {({ isOpen }) => (
+              <>
+                <MenuButton
+                  as={Button}
+                  variant={"unstyled"}
+                  rightIcon={isOpen ? <FiChevronUp /> : <FiChevronDown />}
+                  display={"flex"}
                 >
-                  Add a hospital
-                </Link>
-              )}
-              {/* Show User Profile or Log In Button */}
-              {isLoggedIn ? (
-                // <Button onClick={handleAuth} variant={"link"} mr={4} _hover={{ textDecoration: "none" }}>
-                //   User Profile
-                // </Button>
-                <Stack direction={"row"} alignItems={"center"} spacing={3}>
-                  <Box
-                    borderWidth={1}
-                    borderColor={"#0E1AFB"}
-                    borderRadius={"full"}
-                  >
-                    <Avatar
-                      name="Roronoa Zoro"
-                      src={zoro}
-                      padding={0.5}
-                    ></Avatar>
-                  </Box>
-                  <Flex gap={7}>
-                    <Stack spacing={0.5} fontWeight={"normal"}>
-                      <Text>Amaka</Text>{" "}
-                      {/* TO-DO: Change to user login name as a prop */}
-                      <Text color={"#84868C"}>Super Admin</Text>{" "}
-                      {/* TO-DO: Change to user login name */}
+                  <Stack direction={"row"} alignItems={"center"} spacing={3}>
+                    <Box
+                      borderWidth={1}
+                      borderColor={"#0E1AFB"}
+                      borderRadius={"full"}
+                    >
+                      <Avatar
+                        name={userDetails.firstName}
+                        src={zoro}
+                        padding={0.5}
+                      ></Avatar>
+                    </Box>
+                    <Flex gap={7}>
+                      <Stack spacing={0.5} fontWeight={"normal"}>
+                        <Text textAlign={"left"}>
+                          {userDetails.firstName}
+                        </Text>{" "}
+                        <Text color={"#84868C"}>Super Admin</Text>{" "}
+                      </Stack>
+                    </Flex>
+                  </Stack>
+                </MenuButton>
+                <MenuList fontFamily={"Open Sans"} marginBlockStart={2}>
+                  <MenuItem _hover={{ backgroundColor: "none" }} cursor={'unset'}>
+                    <Stack spacing={0}>
+                      <Text fontWeight="bold">{userDetails.firstName}</Text>
+                      <Text fontSize="sm" color="gray.500">
+                        {userDetails.email}
+                      </Text>
                     </Stack>
-                    <IconButton
-                      aria-label="profile dropdown"
-                      icon={<FiChevronDown />}
-                      variant={"unstyled"}
-                      onClick={handleAuth}
-                    ></IconButton>
-                  </Flex>
-                </Stack>
-              ) : (
-                <Button
-                  onClick={handleAuth}
-                  color={"white"}
-                  bgColor={"#0E1AFB"}
-                  paddingInline={8}
-                  paddingBlock={3}
-                  variant={"solid"}
-                  borderRadius={"1.75rem"}
-                  _hover={{ textDecoration: "none" }}
-                >
-                  Log In
-                </Button>
-              )}
+                  </MenuItem>
+                  <MenuDivider />
+                  <MenuItem fontWeight={'semibold'} onClick={handleSignOut}>Sign Out</MenuItem>
+                </MenuList>
+              </>
+            )}
+          </Menu>
+          ) : (
+            <Link as={ReactRouterLink} to='/login'>
+            <Button
+              color={"white"}
+              bgColor={"#0E1AFB"}
+              paddingInline={8}
+              paddingBlock={3}
+              variant={"solid"}
+              borderRadius={"1.75rem"}
+              _hover={{ textDecoration: "none", bgColor: "#030EDD" }}
+              transition={"all 0.8s ease"}
+            >
+              Log In
+            </Button>
+            </Link>
+          )}
             </Flex>
           </DrawerBody>
         </DrawerContent>
