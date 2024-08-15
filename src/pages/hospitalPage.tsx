@@ -16,7 +16,7 @@ import {
 import NavBar from "../components/navbar";
 import SearchBar from "../components/searchBar";
 import HospitalCard from "../components/hospitalCard";
-import { FiChevronRight, FiX } from "react-icons/fi";
+import { FiChevronRight } from "react-icons/fi";
 import FilterHospital from "../components/filterHospitals";
 import ReactPaginate from "react-paginate";
 import "../index.css";
@@ -147,11 +147,12 @@ function HospitalPage() {
               </Stack>
             </Stack>
             <Button
-              rightIcon={<FiX />}
               variant={"unstyled"}
               display={"flex"}
               onClick={handleClearFilter}
-              color={"#84868C"}
+              color={"#0E1AFB"}
+              fontWeight={'semibold'}
+              fontFamily={'Open Sans'}
             >
               Clear Filter
             </Button>
