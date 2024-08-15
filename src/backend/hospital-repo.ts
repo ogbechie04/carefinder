@@ -19,7 +19,10 @@ const command = new GetObjectCommand({
 export default async function hospitalList(): Promise<Hospital[]> {
   try {
     const response = await client.send(command);
-    // The Body object also has 'transformToByteArray' and 'transformToWebStream' methods.
+
+    if (!response.Body) {
+      throw new Error("No data returned from S3");
+    }
     const str = await response.Body.transformToString();
     const data: ResponseHospital[] = JSON.parse(str);
     console.log(data[0].phone_number);
