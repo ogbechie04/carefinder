@@ -1,27 +1,86 @@
-# React + TypeScript + Vite
+# Carefinder
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Carefinder is a web application that helps users find hospitals, view patient reviews, and explore hospital services. It offers a user-friendly interface with features like search, filters, pagination, and user authentication. Admin users can also create hospital entries using markdown.
 
-Currently, two official plugins are available:
+## Table of Contents
 
+- [Carefinder](#carefinder)
+  - [Table of Contents](#table-of-contents)
+  - [Features](#features)
+  - [Getting Started](#getting-started)
+    - [Prerequisites](#prerequisites)
+    - [Installation](#installation)
+  - [Usage](#usage)
+    - [Running the Application](#running-the-application)
+    - [Admin Features](#admin-features)
+    - [User Features](#user-features)
+  - [Project Structure](#project-structure)
+  - [Configuration](#configuration)
+  - [Deployment](#deployment)
 
-## Expanding the ESLint configuration
+## Features
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+- **Search and Filter Hospitals**: Users can search for hospitals by name and filter results by location and type.
+- **User Authentication**: Secure authentication for users and admins using Firebase.
+- **Hospital Entries**: Admins can add hospital entries with markdown support, allowing rich text formatting.
+- **Pagination**: Efficient data display with pagination to handle large datasets.
+- **Responsive Design**: Optimized for mobile, tablet, and desktop devices.
+- **Sharing Options**: Users can share hospital lists via email, social media, or direct links.
 
-- Configure the top-level `parserOptions` property like this:
+## Getting Started
 
-```js
-export default {
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json', './tsconfig.app.json'],
-    tsconfigRootDir: __dirname
-  },
-}
-```
+### Prerequisites
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+- **Node.js**: Make sure you have Node.js installed on your machine.
+- **npm or Yarn**: The project uses npm for package management. Ensure npm or Yarn is installed.
+- **Firebase**: Set up a Firebase project for authentication and Firestore.
+- **AWS S3**: Set up an S3 bucket for storing hospital data.
+
+### Installation
+
+1. **Clone the repository**:
+   ```bash
+   git clone https://github.com/yourusername/carefinder.git
+   cd carefinder
+2. **Install dependencies**:
+   ```bash
+   npm install
+3. **Run the application
+   ```bash
+   npm run dev
+
+## Usage
+
+### Running the Application
+
+- **Development**: Run `npm run dev` to start the application in development mode.
+- **Production**: Run `npm run build` to build the application for production.
+
+### Admin Features
+
+- **Add Hospital**: Admins can add new hospital entries using a markdown editor.
+
+### User Features
+
+- **Search Hospitals**: Use the search bar to find hospitals by name.
+- **Filter Hospitals**: Filter hospitals by location and type.
+- **View Hospital Details**: View Hospital Details.
+
+## Project Structure
+
+- **/src**: Contains the source code for the application.
+  - **/components**: Reusable components like Navbar, Footer, etc.
+  - **/pages**: Different pages like Home, Login, SignUp, etc.
+  - **/hooks**: Custom hooks like `useHospitalData`.
+  - **/utils**: Utility functions and helpers.
+  - **/assets**: Images, icons, and other static assets.
+
+## Configuration
+
+- **Firebase**: Configure Firebase in `src/firebaseConfig.ts` for authentication and Firestore.
+- **AWS S3**: Configure AWS S3 in `src/backend/hospital-repo.ts` for storing hospital data.
+
+## Deployment
+
+- **Vercel/Netlify**: The project can be deployed to platforms like Vercel or Netlify. Ensure environment variables are configured in the deployment settings.
+- **AWS S3**: Hospital data is fetched from an S3 bucket. Ensure the bucket is configured and accessible.
