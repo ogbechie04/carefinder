@@ -1,0 +1,6 @@
+{
+    "compilerOptions": {
+      "types": ["jest", "@testing-library/jest-dom"]
+    },
+    "include": ["src/setupTests.ts", "src/**/*.test.tsx"]
+  }
